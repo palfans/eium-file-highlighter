@@ -1,0 +1,177 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "eIUM",
+  "patterns": [
+    { "include": "#ipAddresses" },
+    { "include": "#sections" },
+    { "include": "#classNameLine" },
+    { "include": "#directives" },
+    { "include": "#links" },
+    { "include": "#references" },
+    { "include": "#comments" },
+    { "include": "#property" },
+    { "include": "#trueValues" },
+    { "include": "#falseValues" },
+    { "include": "#numbers" },
+    { "include": "#strings" }
+  ],
+  "repository": {
+    "sections": {
+      "name": "meta.section.header.eium markup.heading.1.eium",
+      "match": "^\\s*(\\[/[^\\]]*\\])\\s*$",
+      "captures": {
+        "1": { "name": "entity.name.section.eium markup.bold.eium support.type.eium" }
+      }
+    },
+    "classNameLine": {
+      "name": "meta.class-definition.eium",
+      "match": "^\\s*(ClassName)(=|:)\\s*(.*)$",
+      "captures": {
+        "1": { "name": "keyword.other.class.eium markup.bold.eium" },
+        "2": { "name": "punctuation.separator.key-value.eium" },
+        "3": { "name": "entity.name.class.eium" }
+      }
+    },
+    "directives": {
+      "patterns": [
+        {
+          "match": "^\\s*(@Exclude)\\b(.*)$",
+          "captures": {
+            "1": { "name": "keyword.control.exclude.eium" },
+            "2": { "name": "string.unquoted.directive-value.eium" }
+          }
+        },
+        {
+          "match": "^\\s*(@Include)\\b(.*)$",
+          "captures": {
+            "1": { "name": "keyword.control.include.eium" },
+            "2": { "name": "string.unquoted.directive-value.eium" }
+          }
+        }
+      ]
+    },
+    "links": {
+      "match": "^\\s*(Link)(=)(.*)$",
+      "captures": {
+        "1": { "name": "keyword.other.link.eium" },
+        "2": { "name": "punctuation.separator.key-value.eium" },
+        "3": { "name": "markup.italic.link.eium" }
+      }
+    },
+    "references": {
+      "begin": "^\\s*(#->)",
+      "beginCaptures": {
+        "1": { "name": "keyword.control.reference.eium markup.bold.eium" }
+      },
+      "end": "$",
+      "patterns": [
+        {
+          "name": "meta.section.header.eium markup.heading.1.eium",
+          "match": "(\\s*)(\\[/[^\\]]*\\])(\\s*)",
+          "captures": {
+            "2": { "name": "entity.name.section.eium markup.bold.eium support.type.eium" }
+          }
+        },
+        { "include": "#refClassName" },
+        { "include": "#refProperty" },
+        { "include": "#trueValues" },
+        { "include": "#falseValues" },
+        { "include": "#ipAddresses" },
+        { "include": "#numbers" },
+        { "include": "#strings" }
+      ]
+    },
+    "refClassName": {
+      "name": "meta.class-definition.eium",
+      "match": "\\s*(ClassName)(=|:)\\s*(.*)$",
+      "captures": {
+        "1": { "name": "keyword.other.class.eium markup.bold.eium" },
+        "2": { "name": "punctuation.separator.key-value.eium" },
+        "3": { "name": "entity.name.class.eium" }
+      }
+    },
+    "refSections": {
+      "name": "meta.section.header.eium markup.heading.1.eium",
+      "match": "\\s*(\\[/[^\\]]*\\])\\s*",
+      "captures": {
+        "1": { "name": "entity.name.section.eium markup.bold.eium support.type.eium" }
+      }
+    },
+    "refProperty": {
+      "match": "\\s*([\\w\\.\\-_]+)\\s*(=|:)\\s*",
+      "captures": {
+        "1": { "name": "entity.name.tag.eium" },
+        "2": { "name": "punctuation.separator.key-value.eium" }
+      }
+    },
+    "comments": {
+      "name": "comment.line.number-sign.eium",
+      "match": "^\\s*(#(?!->)|!|_).*$"
+    },
+    "property": {
+      "match": "^\\s*([\\w\\.\\-_]+)\\s*(=|:)\\s*",
+      "captures": {
+        "1": { "name": "entity.name.tag.eium" },
+        "2": { "name": "punctuation.separator.key-value.eium" }
+      }
+    },
+    "trueValues": {
+      "match": "(?<=:|=)\\s*(true|TRUE|True)\\b",
+      "captures": {
+        "1": { "name": "constant.language.boolean.true.eium markup.inserted.eium" }
+      }
+    },
+    "falseValues": {
+      "match": "(?<=:|=)\\s*(false|FALSE|False)\\b",
+      "captures": {
+        "1": { "name": "constant.language.boolean.false.eium markup.deleted.eium" }
+      }
+    },
+    "ipAddresses": {
+      "match": "(?<=:|=|//|@)\\s*(\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})(:\\d+)?",
+      "captures": {
+        "1": { "name": "constant.other.network.ip-address.eium markup.bold.eium" },
+        "2": { "name": "constant.numeric.port.eium" }
+      }
+    },
+    "embeddedIpAddresses": {
+      "match": "(\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})(:\\d+)?",
+      "captures": {
+        "1": { "name": "constant.other.network.ip-address.eium markup.bold.eium" },
+        "2": { "name": "constant.numeric.port.eium" }
+      }
+    },
+    "numbers": {
+      "match": "(?<=:|=)\\s*(-?\\d+(\\.\\d+)?)(?![\\w\\.])",
+      "name": "constant.numeric.decimal.eium"
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.eium",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "name": "constant.character.escape.eium",
+              "match": "\\\\."
+            },
+            { "include": "#embeddedIpAddresses" }
+          ]
+        },
+        {
+          "name": "string.unquoted.eium",
+          "match": "(?<=:|=)\\s*([^\\s#!\"][^#!]*)",
+          "captures": {
+            "1": {
+              "patterns": [
+                { "include": "#embeddedIpAddresses" }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  },
+  "scopeName": "source.eium"
+}
