@@ -2,8 +2,13 @@
 
 All notable changes to the "eium-file-highlighter" extension will be documented in this file.
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+## 1.0.1 - 2025-05-10
 
-## [Unreleased]
+- Updated version to 1.0.1
+- Improved syntax highlighting rules
+- Fixed known issues
+- Performance optimizations
+
+## 1.0.0 - 2025-04-14
 
 - Initial release

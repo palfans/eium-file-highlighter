@@ -41,6 +41,11 @@ There are several ways to install:
 
 ## Release Notes
 
+### 1.0.1
+- Improved syntax highlighting rules
+- Fixed known issues
+- Performance optimizations
+
 ### 1.0.0
 - Initial release
 - Support for highlighting various elements including node lines, ClassName, directives, reference lines

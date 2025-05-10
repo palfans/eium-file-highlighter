@@ -2,7 +2,7 @@
   "name": "eium-file-highlighter",
   "displayName": "eIUM File Highlighter",
   "description": "Syntax highlighting for eIUM files with .cfg and .config extensions",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "palfansz",
   "license": "MIT",
   "repository": {
